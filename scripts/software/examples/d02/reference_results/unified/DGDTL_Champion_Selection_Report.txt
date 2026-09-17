@@ -1,0 +1,151 @@
+======================================================================
+  DGDTL CHAMPION SELECTION REPORT
+  File — U_MAXP Structural Selection (Phase 1 / Inter-Run)
+  Mode: ERROR_MATRIX    Scale note: Y not normalized — errors in model units.
+======================================================================
+
+PHASE 1 VERDICT : Run2 -> [F1.3]  GTR  —  Genuine Topological Refinement
+PHASE 1 TWIN    : Run1 -> [F1.3]  GTR  —  Genuine Topological Refinement
+PHASE 3 STATUS  : CONFIRMED (Run2)
+VBD FLAG        : NOT_ACTIVE
+FINAL DEPLOYED  : Run2
+
+DECISION TRAIL:
+  [Phase 1 / Inter-Run]  F1.3 (GTR): Run2 improved composite e_val by 4.032% (> ε_tie = 2%) without degrading MSE. Transition from Exploration to Refinement is a genuine geometric improvement.
+  [Phase 3 / E_inc    ]  CONFIRMED — Step 3b-I: ΔE_inc_rel = 1.219% ≤ ε_tie (2%)
+             quasi-equivalence zone, lower E_inc wins (E_inc_R1=0.054924, E_inc_R2=0.054254). 
+  [Line B / F1-VB    ]  NOT ACTIVE — no inter-scout regime inversion detected.
+  [Final Deployed    ]  Run2
+
+----------------------------------------------------------------------
+  Ψ DISCRIMINANT — VALIDATION BIAS DETECTOR
+----------------------------------------------------------------------
+  ε_Ψ threshold        : 1e-08  (= ε_F²)
+
+  Run1  Ψ=0.09977541  log_MAE=-0.178459  log_MSE=-0.559094  Regime=SOV
+  Run2  Ψ=0.10021539  log_MAE=-0.170354  log_MSE=-0.588277  Regime=SOV
+
+  Champion (Run2): Regime=SOV  |Ψ|=0.10021539
+  Twin    (Run1):    Regime=SOV  |Ψ|=0.09977541
+
+----------------------------------------------------------------------
+  RUN1 CHAMPION METRICS
+----------------------------------------------------------------------
+  Original Index      : 498
+  Selection Criterion : MSE (Normal p=0.060)
+  MAE (validation)    : 0.392168
+  MSE (validation)    : 0.234286
+  e_val composite     : 0.435685  [sqrt(MAE * sqrt(MSE)), original scale]
+  φ (Cauchy Balance)  : 0.8754
+  Ψ (Bias Discrim.)   : 0.09977541  Regime: SOV
+
+----------------------------------------------------------------------
+  RUN2 CHAMPION METRICS
+----------------------------------------------------------------------
+  Original Index      : 112
+  Selection Criterion : MAE (Robust - MSE Rejected)
+  MAE (validation)    : 0.385351
+  MSE (validation)    : 0.205816
+  e_val composite     : 0.418117  [sqrt(MAE * sqrt(MSE)), original scale]
+  φ (Cauchy Balance)  : 0.8723
+  Ψ (Bias Discrim.)   : 0.10021539  Regime: SOV
+
+----------------------------------------------------------------------
+  COMPARISON SUMMARY  (decision in model space; display in original scale)
+----------------------------------------------------------------------
+  e_val Run1          : 0.435685
+  e_val Run2          : 0.418117
+  Δe_val (R2 − R1)    : -0.017568  (Run2 better)
+  Δe_val (relative)   : -4.0322%
+  ε_F threshold       : 1e-04
+  ε_tie threshold     : 2%
+
+======================================================================
+  LINE B — F1-VB PARALLEL BRANCH
+======================================================================
+  Status              : NOT ACTIVE
+
+  Activation conditions (all required):
+    (i)  Champion is SOV with |Ψ| >= ε_Ψ : ✓  (regime=SOV, |Ψ|=0.10021539)
+    (ii) Twin is OFT with |Ψ| >= ε_Ψ     : ✗  (regime=SOV, |Ψ|=0.09977541)
+    (iii)Champion operationally relevant  : ✓
+
+  Interpretation: No inter-scout regime inversion detected.
+  The champion score is not flagged as inflated by validation partition bias.
+
+======================================================================
+  PHASE 3 — STRUCTURAL COHERENCE GUARDRAIL (E_inc)
+======================================================================
+  [RULE]   : E_inc = √(e_tr × e_val) × (1 − φ)
+             Step 3b-I  (ΔE_inc_rel ≤ ε_tie): lower E_inc wins.
+             Step 3b-II (ΔE_inc_rel >  ε_tie): lower H (higher φ_emp) dominates if contradicts φ.
+
+      E_inc(Run1)    : 0.054924  [φ = 0.8754 | φ_emp = 0.0691 | H = 13.4804]
+      E_inc(Run2)    : 0.054254  [φ = 0.8723 | φ_emp = 0.0540 | H = 17.5226]
+      ΔE_inc (rel)   : 1.219%
+
+      Step 3b-I: ΔE_inc_rel = 1.219% ≤ ε_tie (2%)
+             quasi-equivalence zone, lower E_inc wins (E_inc_R1=0.054924, E_inc_R2=0.054254).
+
+  [STATUS] : CONFIRMED — Phase 1 selection (Run2) structurally validated.
+
+----------------------------------------------------------------------
+  DEPLOYED CHAMPION SUMMARY
+----------------------------------------------------------------------
+  Source              : Run2
+  Original Index      : 112
+  MAE (validation)    : 0.385351
+  MSE (validation)    : 0.205816
+  e_val composite     : 0.418117
+  φ (Cauchy Balance)  : 0.8723
+  φ_emp (EVT excess)  : 0.053988
+  Ψ regime            : SOV  |Ψ|=0.10021539
+  VBD Flag            : NOT_ACTIVE
+  No. of coefficients : 4
+
+======================================================================
+  METHODOLOGY NOTE
+======================================================================
+  This file implements the Phase-1 (Inter-Run) + Phase-3 stages of
+  the U_MAXP Structural Selection Framework.
+  The primary selection criterion is the composite validation error
+  e_val = sqrt(MAE_vldt * sqrt(MSE_vldt)), consistent with
+  dgdtl_core._select_champion_and_get_report. The comparison is
+  performed in the model/normalized space to ensure scale-invariance;
+  all displayed metrics are converted to original units.
+
+  PHASE 3 EXECUTION POLICY:
+  Phase 3 (E_inc guardrail) runs automatically whenever both Run1
+  and Run2 produce valid champions, UNLESS Line B (F1-VB) is active.
+  A Line B activation indicates a regime-inversion (SOV champion vs
+  OFT twin); applying E_inc over an inflated champion score would
+  lack epistemological validity, so Phase 3 is suspended in that case.
+
+  STEP 3b-II — NATIVE EVT CHANNEL INTEGRATION (H-FACTOR):
+  When the structural gap is significant (ΔE_inc_rel > eps_tie), the theory
+  requires validating structural coherence (φ) against empirical
+  authenticity (φ_emp). If they disagree, the Hyperbolic Tail Factor (H)
+  derived from φ_emp overrides structural coherence. (Ref: U-MAXP Cor. 2.1)
+
+  SYMMETRY OF φ ARBITER:
+  φ is the sole arbiter in the tie zone [ε_F, ε_tie) in BOTH
+  improvement and regression directions. The MSE guardrail (U-MAXP
+  Strict Tail Protection) applies exclusively outside the tie zone
+  (|Δe_val_rel| ≥ ε_tie) where clear improvement justifies its use.
+
+  LINE B SCOPE:
+  The F1-VB parallel branch uses a bidimensional criterion:
+  Criterion 1 (vs BL_TR): psi_sqrt = sqrt(ratio_MAE x ratio_RMSE)
+  Criterion 2 (vs BL_RT): |Psi| = |log10(rho_MAE) x log10(rho_MSE)|
+  U_MAXP_k does NOT apply to the OFT twin (loses by construction).
+  Full Line B canonical verification requires the Hunter.
+
+  Verdict codes: TEQ / GTR / IRF / STP / SNG.
+  This report does NOT apply Phase-2 (Hard-Mode) or Phase-4 (DOA)
+  logic — those require U_RAW values from dgdtl_hunter.
+
+  Numerical thresholds:
+    ε_F   = 1e-04  (quantization floor δ_min=1e-6, P3)
+    ε_tie = 2%   (geometric mean Max Tie=0.35% / Min Win=6.1%, P5)
+    ε_Ψ   = 1e-08  (= ε_F², filters float noise)
+======================================================================

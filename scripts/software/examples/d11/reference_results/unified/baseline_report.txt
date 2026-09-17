@@ -1,0 +1,58 @@
+--- DGDTL Baseline Report ---
+Mode: raw
+Baseline MSE: 0.134883
+
+Coefficients (Original):
+    Predictor                 Coefficient_Normalized
+    pVBp                         -3.031790
+    pVBd                          2.809109
+    P31                          -0.441657
+    P31_Se                        0.108795
+    JP_Se                         0.313343
+
+Coefficients (Retrain):
+    Predictor                 Coefficient_Normalized
+    pVBp                         -2.514098
+    pVBd                          2.240301
+    P31                          -0.673781
+    P31_Se                        0.334942
+    JP_Se                         0.509630
+
+--- Performance Metrics (Original scale) ---
+
+Mean Absolute Error (MAE)
+-------------------------
+Training        0.4732
+Validation      0.8110
+Testing         1.3102
+Valid+Testing   1.0606
+Train+Valid     0.5292 (Retrain)
+Testing         0.7619 (Retrain)
+
+Mean Squared Error (MSE)
+------------------------
+Training        0.3045
+Validation      1.2137
+Testing         2.2378
+Valid+Testing   1.7258
+Train+Valid     0.4659 (Retrain)
+Testing         0.9187 (Retrain)
+
+R-squared (R²)
+--------------
+Training        0.8555
+Validation      0.1981
+Testing         0.6768
+Valid+Testing   0.6049
+Train+Valid     0.7656 (Retrain)
+Testing         0.8673 (Retrain)
+
+Maximum Absolute Error (MaxErr)
+-------------------------------
+Training        1.0025
+Validation      2.2469
+Testing         2.4024
+Global          2.4024
+Train+Valid     1.7797 (Retrain)
+Testing         1.5735 (Retrain)
+Global          1.7797 (Retrain)

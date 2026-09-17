@@ -1,0 +1,7 @@
+Predictor,Coefficient_Normalized,Coefficient_Normalized_Retrain
+Intercept,2.030934,2.021875
+X1,-0.064725,-0.017769
+X2,-0.214845,-0.195922
+X3,-0.401517,-0.358522
+X4,0.108633,0.128525
+X5,0.062291,0.039531

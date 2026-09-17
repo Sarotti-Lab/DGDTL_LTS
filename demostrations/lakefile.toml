@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: 2026 José A. Pérez
+# SPDX-License-Identifier: MIT
+
+name = "dgdtl_formalization_v2"
+version = "0.2.0"
+defaultTargets = ["DGDTLFormalization"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+
+[[lean_lib]]
+name = "DGDTLFormalization"
+roots = [
+  "Theory.Identifiability",
+  "Theory.TIE",
+  "Topology.Existence",
+  "Topology.Relaxation",
+  "UMaxP.Aemp_k_factor",
+  "UMaxP.GCI",
+  "UMaxP.LineB_ValidationBias",
+  "UMaxP.MSEGuardrail",
+  "UMaxP.Phase3Selection",
+  "UMaxP.ProtocolOperational",
+  "UMaxP.SDEb",
+  "UMaxP.StructuralSelection",
+  "UMaxP.U_MaxP_prop",
+  "UMaxP.strict_mode",
+]

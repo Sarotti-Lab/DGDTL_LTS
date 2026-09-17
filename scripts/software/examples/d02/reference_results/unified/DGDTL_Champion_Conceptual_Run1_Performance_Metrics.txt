@@ -1,0 +1,63 @@
+--- Summary of Model Evaluation ---
+Timestamp: 2026-08-25 11:06:07
+Predictors Normalized (X): False
+Target Normalized (Y): False
+Duration (Training Phase): 0.13 minutes
+Model: DGDTL_Champion_Conceptual_Run1 (TOLERANCE_FACTOR=2.000000, VALIDATION_THRESHOLD=1.502567, beta_sum_one=True, coeff_bounds=(0.061294, 0.566558), constraint_threshold=1.502567, damping_factor=200.000000, diversity_weight=1.000000, filter_limits=None, fit_intercept=False, intercept_bounds=None, mode=error_matrix, n_jobs=11, num_solutions_run1=1000, num_solutions_run2=1000, random_state=42, shapiro_threshold=0.050000, verbose=True)
+============================================================
+
+Coefficients:
+Predictor  Coefficient
+  X_M062X     0.182995
+  X_M06HF     0.203419
+  X_TPSSh     0.206036
+X_M062XD3     0.407550
+
+
+--- Performance Metrics (Original scale) ---
+
+Mean Absolute Error (MAE)
+-------------------------
+Training      0.4099
+Validation    0.3922
+Train+Valid   0.4069
+Testing       0.5258
+Valid+Testing  0.4906
+
+
+Mean Squared Error (MSE)
+-------------------------
+Training      0.2361
+Validation    0.2343
+Train+Valid   0.2358
+Testing       0.3710
+Valid+Testing  0.3350
+
+
+R-squared (R²)
+---------------
+Training      0.9764
+Validation    0.9923
+Train+Valid   0.9828
+Testing       0.9909
+Valid+Testing  0.9912
+
+Maximum Absolute Error (MaxErr)
+-------------------------------
+Training      1.0230
+Validation    0.7488
+Testing       1.0870
+Global        1.0870
+======================================================================
+  PEL DIAGNOSTIC (Pareto-Efficiency-Like)
+======================================================================
+  Shapiro-Wilk p-value (Train) : 0.059532  (Alpha Threshold: 0.05)
+  Weighting Factor (w)         : 0.8706
+
+  Metrics Ordered by Magnitude (Unified Scale):
+    1. MAE (L1)  : 0.392168  <- Lower Bound (Robust Floor)
+    2. PEL       : 0.472145  <- PEL ≈ RMSE (Strong L2 Dominance)
+    3. RMSE (L2) : 0.484031  <- Upper Bound (Gaussian Ceiling)
+
+  Diagnostic   : Gaussian Regime. Absolute priority assigned to global precision.
+======================================================================

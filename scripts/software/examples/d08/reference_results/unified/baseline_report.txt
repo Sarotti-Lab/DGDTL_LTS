@@ -1,0 +1,66 @@
+--- DGDTL Baseline Report ---
+Mode: raw
+Baseline MSE: 1.162802
+
+Coefficients (Original):
+    Predictor                 Coefficient_Normalized
+    Intercept                  -130.327513
+    N1_NBO-q                      1.422673
+    C2_NBO-q                      2.474647
+    C3_NBO-q                     -0.084005
+    C5_NBO-q                      1.068934
+    C3_f-                        -3.236237
+    C3sub_f-                     -1.684383
+    C4H_f-                        0.610181
+    C4H_NBO-q                     0.428190
+
+Coefficients (Retrain):
+    Predictor                 Coefficient_Normalized
+    Intercept                  -130.315503
+    N1_NBO-q                      1.362919
+    C2_NBO-q                      2.491436
+    C3_NBO-q                     -0.051435
+    C5_NBO-q                      1.050359
+    C3_f-                        -3.002664
+    C3sub_f-                     -1.535047
+    C4H_f-                        0.355768
+    C4H_NBO-q                     0.328664
+
+--- Performance Metrics (Original scale) ---
+
+Mean Absolute Error (MAE)
+-------------------------
+Training        0.8432
+Validation      0.9968
+Testing         1.0223
+Valid+Testing   1.0075
+Train+Valid     0.8674 (Retrain)
+Testing         0.9971 (Retrain)
+
+Mean Squared Error (MSE)
+------------------------
+Training        1.1628
+Validation      1.5080
+Testing         1.7249
+Valid+Testing   1.5990
+Train+Valid     1.2019 (Retrain)
+Testing         1.6784 (Retrain)
+
+R-squared (R²)
+--------------
+Training        0.9476
+Validation      0.9356
+Testing         0.9140
+Valid+Testing   0.9279
+Train+Valid     0.9466 (Retrain)
+Testing         0.9163 (Retrain)
+
+Maximum Absolute Error (MaxErr)
+-------------------------------
+Training        3.4854
+Validation      2.7349
+Testing         2.5011
+Global          3.4854
+Train+Valid     3.4742 (Retrain)
+Testing         2.4789 (Retrain)
+Global          3.4742 (Retrain)

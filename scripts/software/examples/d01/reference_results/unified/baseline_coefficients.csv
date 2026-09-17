@@ -1,0 +1,5 @@
+Predictor,Coefficient_Normalized,Coefficient_Normalized_Retrain
+Intercept,0.05273,0.047322
+NBO_C1,0.590847,0.686085
+sEpi,-0.415321,-0.418153
+NBO_C1_x_sEpi,-0.575551,-0.457034

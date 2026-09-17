@@ -1,0 +1,127 @@
+==============================================================================================================
+DGDTL STRUCTURAL SELECTION FRAMEWORK  v1.0.0
+Four-Phase U_MAXP Post-Processor — Selection Narrative Report
+==============================================================================================================
+Date              : 2026-08-24 14:38:41
+Input Source      : In-Memory Hunter Engine
+eps_F (num. floor): 0.0001  [delta_min=1e-6 -> Delta_phi_min=1e-12, margin=1e8x]
+delta_rel (thr)   : 0.005  [0.5% of phi_A — Run-2 contraction noise floor]
+eps_tie (tie mrg) : 2%  [geom. mean: Delta_tie=0.35%(Max Tie), Delta_min=6.1%(Min Win)]
+
+ACRONYM LEGEND:
+  --- Models ---
+  BL_TR   BASELINE_TRAIN_ONLY  (M_MSE on training partition only)
+  BL_RT   BASELINE_RETRAIN     (M_MSE on train + validation)
+  HM      Hard-Mode rival = max{U_RAW(BL_TR), U_RAW(BL_RT)}
+  M_MSE   MSE Minimization (analytical baseline estimator)
+
+  --- Phase 1 verdict codes ---
+  TEQ   F1.0    Topological Equivalence        Run-1 retained (precedence)
+  JDC   F1.1    Joint Density Collapse         Run-1 retained
+  IRF   F1.2    Inefficient Refinement         Run-1 retained
+  GTR   F1.3    Genuine Topological Refinement Run-2 accepted
+  STP   F1.3phi Step Tie — phi Defends R1      Run-1 retained (P6)
+  SDI   F1.4    Spurious Density Increment     Run-1 retained
+
+  --- Phase 2 verdict codes ---
+  BND   F2.0    Baseline Native Dominance        BL wins (Gate 1 fail)
+  SPT   F2.1    Spurious Transfer                BL wins (I=T, G=F)
+  TRG   F2.2    Topological Regularization       C  wins (I=T, G=T)
+  TSA   F2.2-RT Topological Reg. — Scope Adv.    C  wins (P7 advisory)
+  STD   F2.3    Structural Dominance             C  wins (I=F, G=T)
+  ISI   F2.4    Incoherent Scalar Improvement    BL wins (I=F, G=F)
+
+  --- Phase 4 verdict codes (DOA = Dominance of Observable Accuracy) ---
+  DAC   FA.1  DOA Complete          C dominated BL_RT on both metrics (I=T, J=T)
+  DAE   FA.2  DOA Error             C lower error than BL_RT            (I=T, J=F)
+  DPO   FA.3  DOA Phi Only          C better coherence; BL_RT less err  (I=F, J=T)
+  ROS   FA.4  RT Observable Sup.    BL_RT dominated both metrics        (I=F, J=F)
+
+BASELINE REFERENCE
+--------------------------------------------------------------------------------------------------------------
+  HM rival (U_MAXP_k) : BASELINE_RETRAIN  [0.133696]
+  Asymmetry ref BL_TR: e_val=0.945246  e_tr=0.510995  ratio_ref=1.849815
+
+  BASELINE_TRAIN_ONLY             U_k=0.093196  e_val=0.945246  e_tr=0.510995  ratio=1.849815  SDE_b=0.4163
+  BASELINE_RETRAIN                U_k=0.133696  e_val=0.601013  e_tr=0.601013  ratio=1.000000  SDE_b=0.5168
+
+PHASE 1 — TOPOLOGICAL STEP ACCEPTANCE CRITERION  (intra-scout)
+--------------------------------------------------------------------------------------------------------------
+  Evaluates Run-1->Run-2 transition using (Delta_U_k, Delta_phi).
+
+  Scout                          [Code] Case           Delta_U_k    Delta_phi Champion
+  ──────────────────────────────────────────────────────────────────────────────────
+  L1_FAIL_GM_Scout_4             [SDI] F1.4          +0.000000    -0.021730    Run 1
+  L2_FAIL_GM_Scout_4             [TEQ] F1.0          +0.000000    +0.000000    Run 1
+
+PHASE 2 — ABSOLUTE STRUCTURAL INTEGRITY FILTER  (vs. HM M_MSE)
+--------------------------------------------------------------------------------------------------------------
+  I(C) = [e_tr(C) > e_val(C)]  e=sqrt(MAE*sqrt(MSE))  [P2]
+  G(C) = [ratio_c <= ratio_ref+eps_F]  ratio_ref=1.849815  [P1-final]
+
+  Scout                          [Code] Case      U_k(C)  Delta%  ratio_c   I   G      Verdict
+  ──────────────────────────────────────────────────────────────────────────────────────────────
+  L1_FAIL_GM_Scout_4             [BND] F2.0       0.0000  -100.0%   0.5964   —   —     BASELINE
+  L1_FAIL_GM_Scout_4             [BND] F2.0       0.0000  -100.0%   0.5695   —   —     BASELINE
+  L2_FAIL_GM_Scout_4             [BND] F2.0       0.0641   -52.0%   0.8402   —   —     BASELINE
+  L2_FAIL_GM_Scout_4             [BND] F2.0       0.0641   -52.0%   0.8402   —   —     BASELINE
+
+PHASE 3 — POST-HOC DUAL TIE-BREAK
+--------------------------------------------------------------------------------------------------------------
+  [STATUS] : INACTIVE — No tie-break required (clear dominance or single candidate).
+
+PHASE 4 — OBSERVABLE DOMINANCE AUDIT  (champion vs. BL_RT)
+--------------------------------------------------------------------------------------------------------------
+  [~] No active DGDTL candidates — Phase 4 not applicable.
+
+TOP DGDTL CANDIDATES — FINAL FILTERED RANKING
+--------------------------------------------------------------------------------------------------------------
+  ★  CHAMPION DEPLOYED  : BASELINE_RETRAIN
+     U_MAXP_k = 0.133696  (Hard-Mode reference)
+     BASELINE_TRAIN_ONLY                  U_k=0.093196  SDE_b=0.4163  e_val=0.945246  e_tr=0.510995
+  ►  BASELINE_RETRAIN                     U_k=0.133696  SDE_b=0.5168  e_val=0.601013  e_tr=0.601013
+
+  [CASE A — K_valid ≠ ∅]  Gate 1 not cleared. Best DGDTL-LTS diagnostic candidate:
+
+  ◈  DIAGNOSTIC CANDIDATE  : L2_FAIL_GM_Scout_4  Run 1
+     U_MAXP_k = 0.064121  (Gap vs HM: -52.04%  — did not clear Hard-Mode)
+     SDE_b=0.2605  GCI=0.2461  A_emp=1.0000  kappa=1.0000  phi=0.753076
+     e_val=0.652726  e_tr=0.776840  MAE_val=0.568872  MSE_val=0.560912
+
+  [!] Reported as-is. No quality filter applied. For analyst use only.
+      Baseline remains the deployed champion per protocol.
+
+  All K_valid DGDTL-LTS candidates (ranked by U_MAXP_k):
+  ◈ #1  L2_FAIL_GM_Scout_4              Run 1  U_k=0.064121  SDE_b=0.2605  GCI=0.2461  A_emp=1.0000  phi=0.753076
+    #2  L2_FAIL_GM_Scout_4              Run 2  U_k=0.064121  SDE_b=0.2605  GCI=0.2461  A_emp=1.0000  phi=0.753076
+    #3  L1_FAIL_GM_Scout_4              Run 1  U_k=0.000000  SDE_b=0.0000  GCI=0.1743  A_emp=0.9069  phi=0.584135
+    #4  L1_FAIL_GM_Scout_4              Run 2  U_k=0.000000  SDE_b=0.0000  GCI=0.1568  A_emp=0.9069  phi=0.562405
+
+--------------------------------------------------------------------------------------------------------------
+EXECUTIVE SUMMARY
+--------------------------------------------------------------------------------------------------------------
+  Scouts Evaluated          : 2
+  DGDTL candidates passing  : 0 (from 0 distinct scouts)
+  Baseline dominant scouts  : 2
+  Champion Deployed         : BASELINE_RETRAIN  [BASELINE — protocol decision]
+  Fallback Case             : CASE A — K_valid ≠ ∅  (Gate 1 failed; diagnostic candidate shown above)
+
+  FORMAL CORRECTIONS APPLIED:
+    P1-final  G(C)=[ratio_c<=ratio_ref+eps_F]
+    P2        I(C)=[e_tr(C)>e_val(C)]  e=sqrt(MAE*sqrt(MSE))
+    P3        eps_F=0.0001  [Delta_phi_min=1e-12, margin=1e8x]
+    P4        thr_adp=max(eps_F,0.005*phi_A)  [adaptive phi threshold]
+    P5/P6     eps_tie=2%  [Delta_tie=0.35%(Max Tie), Delta_min=6.1%(Min Win)]
+    P7/TSA    F2.2-RT sub-verdict: DGDTL>BL_TR but BL_RT scope advisory.
+    P8/DOA    Phase-4 audit: DAC/DAE/DPO/ROS certification vs BL_RT.
+    F1-VB     Parallel Branch for Validation Bias Divergence via Psi metric.
+    Phase 3a  Post-Hoc Dual Tie-Break upgraded to U_comp structural metric.
+    P3b/EVT   Intra-scout tie-break via E_inc & EVT Guardrail (Hyperbolic Factor).
+
+  EPISTEMOLOGICAL NOTES:
+    TRG(F2.2): DGDTL constraints displaced solution outside training minimum.
+    STD(F2.3): pure Pareto dominance — lower error AND better integrity.
+    DAC(FA.1): if test degrades -> cause is OOD shift, not selection error.
+    DAE(FA.2): J_RT=False expected in symmetric domains (ratio_ref~1).
+    ratio_ref > 1 — natural val/train asymmetry (domain property)
+==============================================================================================================

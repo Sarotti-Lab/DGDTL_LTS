@@ -1,0 +1,15 @@
+*.py text eol=lf
+*.lean text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.csv text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.whl binary
+*.pdf binary
+*.png binary
+*.exe binary
+launchers/windows/THIRD_PARTY_NOTICES/MICROSOFT_TRUE_TYPE_FONTS_EULA.txt -text
+examples/**/reference_results/** -text
+examples/REFERENCE_RESULTS.sha256 text eol=lf
+examples/REFERENCE_PROVENANCE.json text eol=lf

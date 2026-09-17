@@ -1,0 +1,32 @@
+name: dgdtl_v2
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Base language
+  - python=3.12.12
+  # Data and Math Libraries
+  - numpy=2.4.2
+  - pandas=3.0.1
+  - scipy=1.17.1
+  - sympy=1.14.0
+  # Machine Learning y Optimization
+  - scikit-learn=1.8.0
+  - xgboost=3.2.0
+  - lightgbm=4.6.0
+  - optuna=4.7.0
+  - pyomo=6.10.0
+  - cvxpy=1.7.5
+  - osqp=1.1.1
+  # Visualization and Graphical Interface
+  - matplotlib=3.10.8
+  - seaborn=0.13.2
+  - plotly=6.5.2
+  - pyside6=6.10.2
+  # Databases and Utilities
+  - sqlalchemy=2.0.46
+  - alembic=1.18.4
+  - openpyxl=3.1.5
+  - pillow=12.1.1
+  - colorlog=6.10.1
+  - tqdm=4.67.3

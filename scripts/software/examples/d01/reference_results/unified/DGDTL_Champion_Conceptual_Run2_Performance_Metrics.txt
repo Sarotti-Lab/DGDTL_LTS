@@ -1,0 +1,63 @@
+--- Summary of Model Evaluation ---
+Timestamp: 2026-08-25 11:02:55
+Predictors Normalized (X): True
+Target Normalized (Y): True
+Duration (Training Phase): 0.51 minutes
+Model: DGDTL_Champion_Conceptual_Run2 (TOLERANCE_FACTOR=1.267034, VALIDATION_THRESHOLD=0.335721, beta_sum_one=False, coeff_bounds=(-0.880000, 0.890000), constraint_threshold=0.299751, damping_factor=200.000000, diversity_weight=24.842181, filter_limits=None, fit_intercept=True, intercept_bounds=(-1.500000, 1.600000), mode=raw, n_jobs=11, num_solutions_run1=1000, num_solutions_run2=1000, random_state=42, shapiro_threshold=0.050000, verbose=True)
+============================================================
+
+Coefficients:
+    Predictor  Coefficient_Normalized
+    Intercept               -0.011800
+       NBO_C1                0.732635
+         sEpi               -0.565577
+NBO_C1_x_sEpi               -0.514436
+
+
+--- Performance Metrics (Original scale) ---
+
+Mean Absolute Error (MAE)
+-------------------------
+Training      0.1542
+Validation    0.0307
+Train+Valid   0.1277
+Testing       0.2864
+Valid+Testing  0.1585
+
+
+Mean Squared Error (MSE)
+-------------------------
+Training      0.0353
+Validation    0.0010
+Train+Valid   0.0279
+Testing       0.1089
+Valid+Testing  0.0550
+
+
+R-squared (R²)
+---------------
+Training      0.8285
+Validation    0.9940
+Train+Valid   0.8575
+Testing       0.2466
+Valid+Testing  0.7303
+
+Maximum Absolute Error (MaxErr)
+-------------------------------
+Training      0.2998
+Validation    0.0353
+Testing       0.4757
+Global        0.4757
+======================================================================
+  PEL DIAGNOSTIC (Pareto-Efficiency-Like)
+======================================================================
+  Shapiro-Wilk p-value (Train) : 0.660444  (Alpha Threshold: 0.05)
+  Weighting Factor (w)         : 1.0000
+
+  Metrics Ordered by Magnitude (Unified Scale):
+    1. MAE (L1)  : 0.030696  <- Lower Bound (Robust Floor)
+    2. PEL       : 0.031054  <- PEL ≈ RMSE (Strong L2 Dominance)
+    3. RMSE (L2) : 0.031054  <- Upper Bound (Gaussian Ceiling)
+
+  Diagnostic   : Gaussian Regime. Absolute priority assigned to global precision.
+======================================================================

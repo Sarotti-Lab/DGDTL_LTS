@@ -1,0 +1,27 @@
+--- STATISTICAL ANALYSIS FOR MODEL: DGDTL_Champion_Conceptual_Run1 ---
+Generated on: 2026-08-25 11:02:59
+
+
+1. Normality of Residuals
+--------------------------
+   - Test: Shapiro-Wilk
+   - Statistic: 0.9301, p-value: 0.4119
+   - Conclusion: The residuals appear to be normally distributed. (✓ Assumption met)
+
+
+2. Homoscedasticity of Residuals (Constant Variance)
+-----------------------------------------------------
+   - Test: Breusch-Pagan
+   - LM Statistic: 3.3208, p-value: 0.3448
+   - Conclusion: The variance of the residuals appears constant (homoscedastic). (✓ Assumption met)
+
+
+3. Influential Points Analysis
+------------------------------
+   - High Leverage Points (> 2*p/n = 0.727): 2 (18.18%)
+   - Points with Cook's D > 0.5: 2
+   - Points with Cook's D > 1.0: 1
+   - Interpretation:
+       Points with high leverage have unusual predictor values. Points with a high Cook's Distance
+       have a strong influence on the model's results. These points can be inspected in the
+       'Residuals vs Leverage' plot.

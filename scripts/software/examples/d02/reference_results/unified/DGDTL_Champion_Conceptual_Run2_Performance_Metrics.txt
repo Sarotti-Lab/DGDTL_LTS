@@ -1,0 +1,63 @@
+--- Summary of Model Evaluation ---
+Timestamp: 2026-08-25 11:06:07
+Predictors Normalized (X): False
+Target Normalized (Y): False
+Duration (Training Phase): 0.13 minutes
+Model: DGDTL_Champion_Conceptual_Run2 (TOLERANCE_FACTOR=2.000000, VALIDATION_THRESHOLD=1.502567, beta_sum_one=True, coeff_bounds=(0.061294, 0.566558), constraint_threshold=1.502567, damping_factor=200.000000, diversity_weight=1.000000, filter_limits=None, fit_intercept=False, intercept_bounds=None, mode=error_matrix, n_jobs=11, num_solutions_run1=1000, num_solutions_run2=1000, random_state=42, shapiro_threshold=0.050000, verbose=True)
+============================================================
+
+Coefficients:
+Predictor  Coefficient
+  X_M062X     0.289614
+  X_M06HF     0.184935
+  X_TPSSh     0.155526
+X_M062XD3     0.369925
+
+
+--- Performance Metrics (Original scale) ---
+
+Mean Absolute Error (MAE)
+-------------------------
+Training      0.3954
+Validation    0.3854
+Train+Valid   0.3936
+Testing       0.5983
+Valid+Testing  0.5422
+
+
+Mean Squared Error (MSE)
+-------------------------
+Training      0.2218
+Validation    0.2058
+Train+Valid   0.2191
+Testing       0.4359
+Valid+Testing  0.3753
+
+
+R-squared (R²)
+---------------
+Training      0.9778
+Validation    0.9933
+Train+Valid   0.9840
+Testing       0.9893
+Valid+Testing  0.9901
+
+Maximum Absolute Error (MaxErr)
+-------------------------------
+Training      0.9056
+Validation    0.6686
+Testing       1.0276
+Global        1.0276
+======================================================================
+  PEL DIAGNOSTIC (Pareto-Efficiency-Like)
+======================================================================
+  Shapiro-Wilk p-value (Train) : 0.016167  (Alpha Threshold: 0.05)
+  Weighting Factor (w)         : 0.0162
+
+  Metrics Ordered by Magnitude (Unified Scale):
+    1. MAE (L1)  : 0.385351  <- Lower Bound (Robust Floor)
+    2. PEL       : 0.386456  <- PEL ≈ MAE  (Strong L1 Dominance)
+    3. RMSE (L2) : 0.453669  <- Upper Bound (Gaussian Ceiling)
+
+  Diagnostic   : Heavy-Tails Regime. Robust outlier protection activated.
+======================================================================

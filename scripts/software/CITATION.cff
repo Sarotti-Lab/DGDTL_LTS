@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use DGDTL-LTS / U-MaxP, please cite this software."
+title: "DGDTL-LTS / U-MaxP"
+type: software
+version: 1.0.0
+date-released: 2026-08-26
+authors:
+  - family-names: Pérez
+    given-names: José A.
+  - family-names: Zanardi
+    given-names: María M.
+  - family-names: Sarotti
+    given-names: Ariel M.
+license: MIT

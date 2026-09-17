@@ -1,0 +1,233 @@
+{
+  "selection_date": "2026-09-14",
+  "purpose": "Didactic Linux reference outputs copied from preserved Layer 3 evidence; no new scientific execution or certification.",
+  "source_root_workspace_relative": "scripts/PyPI_cp/validation/cases/PyPI_dgdtl_lts_results_cluster_cord",
+  "destination_base": "examples/",
+  "directory_mapping": {
+    "results": "reference_results/unified",
+    "results_dgdtl_job": "reference_results/hunter"
+  },
+  "artifact_hash_manifest": "REFERENCE_RESULTS.sha256",
+  "manifest_path_base": "examples/",
+  "domains": {
+    "d01": {
+      "artifact_counts": {
+        "unified": 30,
+        "hunter": 32
+      },
+      "input_csv_sha256": {
+        "data_test.csv": "dda6df1a96ccca5417bc6dddd7736ef6bc1d2d95ca7cd524e23f3bb92e2fae81",
+        "data_train.csv": "daebbae69998b0eb2dfbb68acd35b0ccdcb76f41626352d33566cf12d7d7ffb1",
+        "data_valid.csv": "078211f4cc7ec2eb91e219d890d6a978ab90fb5397caa5066848ff547736ca54"
+      },
+      "deployment_guide": {
+        "filename": "DGDTL_Report_L1_Scout_4.txt",
+        "example_sha256": "7d87d5807f808865d85328a42091b534a00ade37821cf4d1d9ad88775da6adf9",
+        "source_sha256": "567c834f58795904b94fd6619c80d2e386d2eb44717f0a2348cba77734d39ddd",
+        "difference": "Date and Execution Time fields only; scientific configuration text matches exactly."
+      },
+      "source_hunter_job": {
+        "filename": "run_dgdtl_job.sge",
+        "sha256": "001867b2806f0aa8a188498764b07f4559d4188e46f25c40d8b740836b4545ad",
+        "command": "srun python dgdtl_hunter_umaxp_cluster.py \\\n    --train \"data_train.csv\" \\\n    --valid \"data_valid.csv\" \\\n    --out-dir \"results_dgdtl_job\" \\\n    --mode raw \\\n    --norm-y \\\n    --formulas NBO_C1*sEpi",
+        "log_filename": "dgdtl_job_407978.log",
+        "log_sha256": "8aa753d7467cb31ebebcf65520dcd8fc05039e14f863a4f1b1b171f6c477775a",
+        "recorded_runtime_lines": [
+          "CLUSTER              = Serafin (CCAD-UNC)",
+          "CPUS                 = 64",
+          ">> CPU model: AMD EPYC 7532 32-Core Processor",
+          ">> Python executable: /home/jperezmendoza/miniforge3/envs/dgdtl_v2/bin/python",
+          "CLUSTER AUTOMATED CONFIGURATION"
+        ]
+      },
+      "source_orchestrator_sha256": {
+        "dgdtl_hunter_umaxp_cluster.py": "5fa2379b8155951aa3e3b8d35543c988e84c81aa56104c8e78408ce6ded6762c",
+        "dgdtl_reporting.py": "34fb12ae6e7305c6a0726ee15e69e2649a769b27b4a5203fa76624b0937c8063",
+        "dgdtl_unified_umaxp.py": "1503d0d1ccbb3d6d9ccb71172a2be4a16702d2e58d164973f28985d02110541c",
+        "plotting_style.py": "7e7244f2d9a1dd3ebc1cd0a7aa01a35e5c99b2e6d4124a3cfdd834130f0aa1d4",
+        "reporting.py": "9ee64bfc8518ba3c1f5dda19762db39e4337b8635cf1d139ec990ced021651f1"
+      },
+      "unified_n_jobs_as_recorded": {
+        "DGDTL_Champion_Conceptual_Run1_Performance_Metrics.txt": "11",
+        "DGDTL_Champion_Conceptual_Run2_Performance_Metrics.txt": "11"
+      }
+    },
+    "d02": {
+      "artifact_counts": {
+        "unified": 30,
+        "hunter": 44
+      },
+      "input_csv_sha256": {
+        "data_test.csv": "234a66ef6ba57d2522bd867dfa4202a606e02ef48a92640227c107e6beef1eeb",
+        "data_train.csv": "4ece1131b9e9bdc9a7898b637620154f47dea1c8a7235ebfd1e39749f6c8615b",
+        "data_valid.csv": "be2dbff87166c29cc40e45c70febee065bb2f990d724807b5c600bc9843186ee"
+      },
+      "deployment_guide": {
+        "filename": "DGDTL_Report_L2_GM_Scout_1.txt",
+        "example_sha256": "2c9dfbc9251a08143ada133fdebb1033c986f5567099651b239bd08c3e67434e",
+        "source_sha256": "fd37aa7f766a1ef8f618df2d0a2a478197575add86f412845e8c8356a13632f7",
+        "difference": "Date and Execution Time fields only; scientific configuration text matches exactly."
+      },
+      "source_hunter_job": {
+        "filename": "run_dgdtl_job.sge",
+        "sha256": "abead3057457371f8b4856f91c7444327161de0ba8079a7b9db8b2f46c5dbd21",
+        "command": "srun python dgdtl_hunter_umaxp_cluster.py \\\n    --train \"data_train.csv\" \\\n    --valid \"data_valid.csv\" \\\n    --out-dir \"results_dgdtl_job\" \\\n    --mode error_matrix \\\n    --no-intercept \\\n    --beta-sum-one \\\n    --no-norm-x",
+        "log_filename": "dgdtl_job_407979.log",
+        "log_sha256": "c4121778c8d5c9dbbdcea2cb7d877d40dc17251179fbf83488613473c3bcfadb",
+        "recorded_runtime_lines": [
+          "CLUSTER              = Serafin (CCAD-UNC)",
+          "CPUS                 = 64",
+          ">> CPU model: AMD EPYC 7532 32-Core Processor",
+          ">> Python executable: /home/jperezmendoza/miniforge3/envs/dgdtl_v2/bin/python",
+          "CLUSTER AUTOMATED CONFIGURATION"
+        ]
+      },
+      "source_orchestrator_sha256": {
+        "dgdtl_hunter_umaxp_cluster.py": "5fa2379b8155951aa3e3b8d35543c988e84c81aa56104c8e78408ce6ded6762c",
+        "dgdtl_reporting.py": "34fb12ae6e7305c6a0726ee15e69e2649a769b27b4a5203fa76624b0937c8063",
+        "dgdtl_unified_umaxp.py": "1503d0d1ccbb3d6d9ccb71172a2be4a16702d2e58d164973f28985d02110541c",
+        "plotting_style.py": "7e7244f2d9a1dd3ebc1cd0a7aa01a35e5c99b2e6d4124a3cfdd834130f0aa1d4",
+        "reporting.py": "9ee64bfc8518ba3c1f5dda19762db39e4337b8635cf1d139ec990ced021651f1"
+      },
+      "unified_n_jobs_as_recorded": {
+        "DGDTL_Champion_Conceptual_Run1_Performance_Metrics.txt": "11",
+        "DGDTL_Champion_Conceptual_Run2_Performance_Metrics.txt": "11"
+      }
+    },
+    "d08": {
+      "artifact_counts": {
+        "unified": 30,
+        "hunter": 26
+      },
+      "input_csv_sha256": {
+        "data_test.csv": "e68f7da23ae3964eae8ddd175748f960a35dedb71bb29f19c38d03acb218403c",
+        "data_train.csv": "a6aadc62a3949a5077a57bff6f3f14ff6141942f078c85fcd03ab36224aa9df8",
+        "data_valid.csv": "8681dfd225eb40ecd23cafb597e1d60863340c64f384f425b145e9ddfc486ef6"
+      },
+      "deployment_guide": {
+        "filename": "DGDTL_Report_L2_Scout_4.txt",
+        "example_sha256": "4e9253acccbb8c9497641459480998a51ff575255d75f2d39062e76a5a08dd55",
+        "source_sha256": "fe828950546ba7d9498fefe4f7233d17d127655d8ce7a8d24bf00df3c5300063",
+        "difference": "Date and Execution Time fields only; scientific configuration text matches exactly."
+      },
+      "source_hunter_job": {
+        "filename": "run_dgdtl_job.sge",
+        "sha256": "be3bb01a7a0d1ccd705c49d49c4acce8075bc4c1a6ab54ad2d7f00c60d3ebb36",
+        "command": "srun python dgdtl_hunter_umaxp_cluster.py \\\n    --train \"data_train.csv\" \\\n    --valid \"data_valid.csv\" \\\n    --out-dir \"results_dgdtl_job\" \\\n    --mode raw \\\n    --beta-sum-one",
+        "log_filename": "dgdtl_job_407975.log",
+        "log_sha256": "161efb41f081f172ecc5fadceb0cbd6d1012688789daf08676038b7cdf638a07",
+        "recorded_runtime_lines": [
+          "CLUSTER              = Serafin (CCAD-UNC)",
+          "CPUS                 = 64",
+          ">> CPU model: AMD EPYC 7532 32-Core Processor",
+          ">> Python executable: /home/jperezmendoza/miniforge3/envs/dgdtl_v2/bin/python",
+          "CLUSTER AUTOMATED CONFIGURATION"
+        ]
+      },
+      "source_orchestrator_sha256": {
+        "dgdtl_hunter_umaxp_cluster.py": "5fa2379b8155951aa3e3b8d35543c988e84c81aa56104c8e78408ce6ded6762c",
+        "dgdtl_reporting.py": "34fb12ae6e7305c6a0726ee15e69e2649a769b27b4a5203fa76624b0937c8063",
+        "dgdtl_unified_umaxp.py": "1503d0d1ccbb3d6d9ccb71172a2be4a16702d2e58d164973f28985d02110541c",
+        "plotting_style.py": "7e7244f2d9a1dd3ebc1cd0a7aa01a35e5c99b2e6d4124a3cfdd834130f0aa1d4",
+        "reporting.py": "9ee64bfc8518ba3c1f5dda19762db39e4337b8635cf1d139ec990ced021651f1"
+      },
+      "unified_n_jobs_as_recorded": {
+        "DGDTL_Champion_Conceptual_Run1_Performance_Metrics.txt": "11",
+        "DGDTL_Champion_Conceptual_Run2_Performance_Metrics.txt": "11"
+      }
+    },
+    "d11": {
+      "artifact_counts": {
+        "unified": 30,
+        "hunter": 8
+      },
+      "input_csv_sha256": {
+        "data_test.csv": "60bb1d5fcd1445ad24445dadad5570469276d3abf54be45b720aab07e431fefa",
+        "data_train.csv": "d4a581b7b7f6095dc9f110f7f7683296d90940923a54e06992bbafd9035b194b",
+        "data_valid.csv": "bbf57dc2d87d7f77ed38ee03c275cf6fa08c8b858b71be264b65c7889eb773b6"
+      },
+      "deployment_guide": {
+        "filename": "DGDTL_Report_L2_FAIL_GM_Scout_4.txt",
+        "example_sha256": "24268126b2551b557cd11a4c89365763d4a003804e57cdfb2a0d8caeffa27740",
+        "source_sha256": "559700368a2cbe90d0289b89a572d04f0d0312c0c67f745a950fce90617831b9",
+        "difference": "Date and Execution Time fields only; scientific configuration text matches exactly."
+      },
+      "source_hunter_job": {
+        "filename": "run_dgdtl_job.sge",
+        "sha256": "cd8d407c5d21515f7177413990ed7eb22317d7a50e9a982d31a40956e2341e8a",
+        "command": "srun python dgdtl_hunter_umaxp_cluster.py \\\n    --train \"data_train.csv\" \\\n    --valid \"data_valid.csv\" \\\n    --out-dir \"results_dgdtl_job\" \\\n    --mode raw \\\n    --no-intercept \\\n    --norm-y",
+        "log_filename": "dgdtl_job_407986.log",
+        "log_sha256": "6d30562fdb25442d9e26826e46d849dc2b4b95973d7c14e6f6376868460edec5",
+        "recorded_runtime_lines": [
+          "CLUSTER              = Serafin (CCAD-UNC)",
+          "CPUS                 = 64",
+          ">> CPU model: AMD EPYC 7532 32-Core Processor",
+          ">> Python executable: /home/jperezmendoza/miniforge3/envs/dgdtl_v2/bin/python",
+          "CLUSTER AUTOMATED CONFIGURATION"
+        ]
+      },
+      "source_orchestrator_sha256": {
+        "dgdtl_hunter_umaxp_cluster.py": "5fa2379b8155951aa3e3b8d35543c988e84c81aa56104c8e78408ce6ded6762c",
+        "dgdtl_reporting.py": "34fb12ae6e7305c6a0726ee15e69e2649a769b27b4a5203fa76624b0937c8063",
+        "dgdtl_unified_umaxp.py": "1503d0d1ccbb3d6d9ccb71172a2be4a16702d2e58d164973f28985d02110541c",
+        "plotting_style.py": "7e7244f2d9a1dd3ebc1cd0a7aa01a35e5c99b2e6d4124a3cfdd834130f0aa1d4",
+        "reporting.py": "9ee64bfc8518ba3c1f5dda19762db39e4337b8635cf1d139ec990ced021651f1"
+      },
+      "unified_n_jobs_as_recorded": {
+        "DGDTL_Champion_Conceptual_Run1_Performance_Metrics.txt": "11",
+        "DGDTL_Champion_Conceptual_Run2_Performance_Metrics.txt": "11"
+      }
+    },
+    "s03": {
+      "artifact_counts": {
+        "unified": 30,
+        "hunter": 44
+      },
+      "input_csv_sha256": {
+        "data_test.csv": "f904b5ec5e376d37bc174a9d5c0c8cb9f7625859ad92eca33270ca248085546c",
+        "data_train.csv": "97678f989b67ee95f914b6e89e8c38c0ceffde27433fdf253ec10182dc0c6d3c",
+        "data_valid.csv": "eb9e8edb92736415ef771d7eb7fdba78d1c585ae76d02dade0c502dc445ec4c1"
+      },
+      "deployment_guide": {
+        "filename": "DGDTL_Report_L2_TACTICAL_GM_Scout_2.txt",
+        "example_sha256": "bed5865519e91c2d42f94101f2ecbfd697ab04910d06da5297f9b5fc6517c756",
+        "source_sha256": "7dd5293a7a06d760e3452a3ef23f5a2e939738907f76bf3932847946bf609b95",
+        "difference": "Date and Execution Time fields only; scientific configuration text matches exactly."
+      },
+      "source_hunter_job": {
+        "filename": "run_dgdtl_job.sge",
+        "sha256": "fa632d1f5b97c5923e5a288a10201e86e633aa63a8e9908474741e50ecc66bfb",
+        "command": "srun python dgdtl_hunter_umaxp_cluster.py \\\n    --train \"data_train.csv\" \\\n    --valid \"data_valid.csv\" \\\n    --out-dir \"results_dgdtl_job\" \\\n    --mode raw",
+        "log_filename": "dgdtl_job_407988.log",
+        "log_sha256": "cc8bc5e3a3e1e86268efca2a8b213d298863e9fcbf18422b931b1e8b23c21140",
+        "recorded_runtime_lines": [
+          "CLUSTER              = Serafin (CCAD-UNC)",
+          "CPUS                 = 64",
+          ">> CPU model: AMD EPYC 7532 32-Core Processor",
+          ">> Python executable: /home/jperezmendoza/miniforge3/envs/dgdtl_v2/bin/python",
+          "CLUSTER AUTOMATED CONFIGURATION"
+        ]
+      },
+      "source_orchestrator_sha256": {
+        "dgdtl_hunter_umaxp_cluster.py": "5fa2379b8155951aa3e3b8d35543c988e84c81aa56104c8e78408ce6ded6762c",
+        "dgdtl_reporting.py": "34fb12ae6e7305c6a0726ee15e69e2649a769b27b4a5203fa76624b0937c8063",
+        "dgdtl_unified_umaxp.py": "1503d0d1ccbb3d6d9ccb71172a2be4a16702d2e58d164973f28985d02110541c",
+        "plotting_style.py": "7e7244f2d9a1dd3ebc1cd0a7aa01a35e5c99b2e6d4124a3cfdd834130f0aa1d4",
+        "reporting.py": "9ee64bfc8518ba3c1f5dda19762db39e4337b8635cf1d139ec990ced021651f1"
+      },
+      "unified_n_jobs_as_recorded": {
+        "DGDTL_Champion_Conceptual_Run1_Performance_Metrics.txt": "11",
+        "DGDTL_Champion_Conceptual_Run2_Performance_Metrics.txt": "11"
+      }
+    }
+  },
+  "existing_certification_records": {
+    "scripts/software/validation/VALIDATION_METHOD.md": "7deda58ae664c0d0a7dfa6ef6c36a734e101876a63112f0bceeb266afd4a2809",
+    "scripts/software/validation/LAYER3_CERTIFICATE.md": "6310eef13e12c61861de3f47e25e9aff9977396c68a7c253719a24a5f702c1dd",
+    "scripts/PyPI_cp/runtime_validation/certification-record/cross-os-v1/FINAL_CERTIFICATION.json": "49e5b72495be46a90d10493e4a320f96c6bac1507a575d2559a78abd3fd05c52",
+    "scripts/PyPI_cp/runtime_validation/certification-record/cross-os-v1/VALIDATION_EVIDENCE_INDEX.json": "e21f92657b1463abdb157a2b348cb345d80c5eae6a19eb91a1c05c5b78de6063"
+  },
+  "historical_execution_scope": "Hunter job logs identify the cluster and allocation. Unified reports preserve their own n_jobs. The collection path does not establish that Unified ran in the same Hunter job or on the same hardware; no missing historical fingerprint is inferred.",
+  "copied_files": 304,
+  "copied_bytes": 10602679
+}

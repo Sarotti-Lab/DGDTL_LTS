@@ -1,0 +1,257 @@
+==============================================================================================================
+DGDTL STRUCTURAL SELECTION FRAMEWORK  v1.0.0
+Four-Phase U_MAXP Post-Processor — Selection Narrative Report
+==============================================================================================================
+Date              : 2026-08-24 15:13:15
+Input Source      : In-Memory Hunter Engine
+eps_F (num. floor): 0.0001  [delta_min=1e-6 -> Delta_phi_min=1e-12, margin=1e8x]
+delta_rel (thr)   : 0.005  [0.5% of phi_A — Run-2 contraction noise floor]
+eps_tie (tie mrg) : 2%  [geom. mean: Delta_tie=0.35%(Max Tie), Delta_min=6.1%(Min Win)]
+
+ACRONYM LEGEND:
+  --- Models ---
+  BL_TR   BASELINE_TRAIN_ONLY  (M_MSE on training partition only)
+  BL_RT   BASELINE_RETRAIN     (M_MSE on train + validation)
+  HM      Hard-Mode rival = max{U_RAW(BL_TR), U_RAW(BL_RT)}
+  M_MSE   MSE Minimization (analytical baseline estimator)
+
+  --- Phase 1 verdict codes ---
+  TEQ   F1.0    Topological Equivalence        Run-1 retained (precedence)
+  JDC   F1.1    Joint Density Collapse         Run-1 retained
+  IRF   F1.2    Inefficient Refinement         Run-1 retained
+  GTR   F1.3    Genuine Topological Refinement Run-2 accepted
+  STP   F1.3phi Step Tie — phi Defends R1      Run-1 retained (P6)
+  SDI   F1.4    Spurious Density Increment     Run-1 retained
+
+  --- Phase 2 verdict codes ---
+  BND   F2.0    Baseline Native Dominance        BL wins (Gate 1 fail)
+  SPT   F2.1    Spurious Transfer                BL wins (I=T, G=F)
+  TRG   F2.2    Topological Regularization       C  wins (I=T, G=T)
+  TSA   F2.2-RT Topological Reg. — Scope Adv.    C  wins (P7 advisory)
+  STD   F2.3    Structural Dominance             C  wins (I=F, G=T)
+  ISI   F2.4    Incoherent Scalar Improvement    BL wins (I=F, G=F)
+
+  --- Phase 4 verdict codes (DOA = Dominance of Observable Accuracy) ---
+  DAC   FA.1  DOA Complete          C dominated BL_RT on both metrics (I=T, J=T)
+  DAE   FA.2  DOA Error             C lower error than BL_RT            (I=T, J=F)
+  DPO   FA.3  DOA Phi Only          C better coherence; BL_RT less err  (I=F, J=T)
+  ROS   FA.4  RT Observable Sup.    BL_RT dominated both metrics        (I=F, J=F)
+
+BASELINE REFERENCE
+--------------------------------------------------------------------------------------------------------------
+  HM rival (U_MAXP_k) : BASELINE_TRAIN_ONLY  [0.001365]
+  Asymmetry ref BL_TR: e_val=0.135194  e_tr=0.116501  ratio_ref=1.160453
+
+  BASELINE_TRAIN_ONLY             U_k=0.001365  e_val=0.135194  e_tr=0.116501  ratio=1.160453  SDE_b=0.0058
+  BASELINE_RETRAIN                U_k=0.000139  e_val=0.113134  e_tr=0.113134  ratio=1.000000  SDE_b=0.0005
+
+PHASE 1 — TOPOLOGICAL STEP ACCEPTANCE CRITERION  (intra-scout)
+--------------------------------------------------------------------------------------------------------------
+  Evaluates Run-1->Run-2 transition using (Delta_U_k, Delta_phi).
+
+  Scout                          [Code] Case           Delta_U_k    Delta_phi Champion
+  ──────────────────────────────────────────────────────────────────────────────────
+  L1_Scout_1                     [GTR] F1.3          -0.000000    -0.004425  Run nan
+  L1_Scout_2                     [IRF] F1.2          -0.000711    +0.049652    Run 1
+  L1_GM_Scout_2                  [IRF] F1.2          -0.030854    +0.136960    Run 1
+  L1_Scout_3                     [IRF] F1.2          -0.002679    +0.061452    Run 1
+  L1_GM_Scout_3                  [IRF] F1.2          -0.012518    +0.052163    Run 1
+  L1_Scout_4                     [IRF] F1.2          -0.000765    +0.031005    Run 1
+  L1_GM_Scout_4                  [IRF] F1.2          -0.005938    +0.114497    Run 1
+  L2_Scout_1                     [IRF] F1.2          -0.000122    +0.066084    Run 1
+  L2_GM_Scout_1                  [IRF] F1.2          -0.003553    +0.101567    Run 1
+  L2_Scout_2                     [JDC] F1.1          -0.004209    -0.062105    Run 1
+  L2_TACTICAL_GM_Scout_2         [SDI] F1.4          +0.002961    -0.052572    Run 1
+  L2_Scout_3                     [IRF] F1.2          -0.008640    +0.016801    Run 1
+  L2_Scout_4                     [GTR] F1.3          +0.009113    +0.004007  Run nan
+  L2_TACTICAL_GM_Scout_4         [JDC] F1.1          -0.004510    -0.005407    Run 1
+
+PHASE 2 — ABSOLUTE STRUCTURAL INTEGRITY FILTER  (vs. HM M_MSE)
+--------------------------------------------------------------------------------------------------------------
+  I(C) = [e_tr(C) > e_val(C)]  e=sqrt(MAE*sqrt(MSE))  [P2]
+  G(C) = [ratio_c <= ratio_ref+eps_F]  ratio_ref=1.160453  [P1-final]
+
+  Scout                          [Code] Case      U_k(C)  Delta%  ratio_c   I   G      Verdict
+  ──────────────────────────────────────────────────────────────────────────────────────────────
+  L1_Scout_1                     [BND] F2.0       0.0000  -100.0%   0.7965   —   —     BASELINE
+  L1_Scout_1                     [BND] F2.0       0.0000  -100.0%   0.7862   —   —     BASELINE
+  L1_Scout_2                     [BND] F2.0       0.0008   -41.1%   0.7895   —   —     BASELINE
+  L1_Scout_2                     [BND] F2.0       0.0001   -93.2%   0.9476   —   —     BASELINE
+  L1_GM_Scout_2                  [TRG] F2.2       0.0429 +3041.9%   0.6398   T   T     >>>DGDTL
+  L1_GM_Scout_2                  [TRG] F2.2       0.0120  +781.7%   0.9616   T   T     >>>DGDTL
+  L1_Scout_3                     [TRG] F2.2       0.0032  +134.1%   0.7899   T   T     >>>DGDTL
+  L1_Scout_3                     [BND] F2.0       0.0005   -62.2%   1.0203   —   —     BASELINE
+  L1_GM_Scout_3                  [TRG] F2.2       0.0461 +3276.4%   0.6560   T   T     >>>DGDTL
+  L1_GM_Scout_3                  [TRG] F2.2       0.0336 +2359.4%   0.7444   T   T     >>>DGDTL
+  L1_Scout_4                     [BND] F2.0       0.0011   -19.7%   0.8685   —   —     BASELINE
+  L1_Scout_4                     [BND] F2.0       0.0003   -75.7%   1.0101   —   —     BASELINE
+  L1_GM_Scout_4                  [TRG] F2.2       0.0327 +2298.5%   0.6501   T   T     >>>DGDTL
+  L1_GM_Scout_4                  [TRG] F2.2       0.0268 +1863.6%   0.8954   T   T     >>>DGDTL
+  L2_Scout_1                     [BND] F2.0       0.0001   -90.4%   0.7669   —   —     BASELINE
+  L2_Scout_1                     [BND] F2.0       0.0000   -99.4%   0.9809   —   —     BASELINE
+  L2_GM_Scout_1                  [TRG] F2.2       0.0037  +170.6%   0.7240   T   T     >>>DGDTL
+  L2_GM_Scout_1                  [BND] F2.0       0.0001   -89.7%   1.1860   —   —     BASELINE
+  L2_Scout_2                     [TRG] F2.2       0.0702 +5044.8%   0.6958   T   T     >>>DGDTL
+  L2_Scout_2                     [TRG] F2.2       0.0660 +4736.5%   0.6052   T   T     >>>DGDTL
+  L2_TACTICAL_GM_Scout_2         [TRG] F2.2       0.0706 +5070.7%   0.6703   T   T     BASELINE
+  L2_TACTICAL_GM_Scout_2         [TRG] F2.2       0.0735 +5287.6%   0.5971   T   T     >>>DGDTL
+  L2_Scout_3                     [TRG] F2.2       0.0512 +3653.5%   0.5482   T   T     >>>DGDTL
+  L2_Scout_3                     [TRG] F2.2       0.0426 +3020.5%   0.5674   T   T     >>>DGDTL
+  L2_Scout_4                     [TRG] F2.2       0.0558 +3987.7%   0.6531   T   T     >>>DGDTL
+  L2_Scout_4                     [TRG] F2.2       0.0649 +4655.3%   0.6591   T   T     >>>DGDTL
+  L2_TACTICAL_GM_Scout_4         [TRG] F2.2       0.0704 +5060.6%   0.5356   T   T     >>>DGDTL
+  L2_TACTICAL_GM_Scout_4         [TRG] F2.2       0.0659 +4730.2%   0.5297   T   T     >>>DGDTL
+
+PHASE 3 — POST-HOC DUAL TIE-BREAK
+--------------------------------------------------------------------------------------------------------------
+  [STATUS] : ACTIVE — Tie-break protocol executed.
+  [!] Security Filter: Same scout (L2_TACTICAL_GM_Scout_2). Gap ignored.
+  Step 3b-II(b) [Divergence — EVT Guardrail H]: L2_TACTICAL_GM_Scout_2_R2 H=2.862913 < H=3.548535
+
+PHASE 4 — OBSERVABLE DOMINANCE AUDIT  (champion vs. BL_RT)
+--------------------------------------------------------------------------------------------------------------
+  [DAE] FA.2 — DOA Error
+  Narrative: DGDTL lower error than BL_RT; phi gap expected (BL_RT asymmetry)
+  I_RT : e_val(C)=0.081323  vs  e_val(BL_RT)=0.113134  Delta=+28.12%  [True]
+  J_RT : phi(C) =0.813629  vs  phi(BL_RT) =0.989029  [False]
+
+
+TOP DGDTL CANDIDATES — FINAL FILTERED RANKING
+--------------------------------------------------------------------------------------------------------------
+
+  #1  L2_TACTICAL_GM_Scout_2  Run 2  U_k=0.073546  Delta=+5287.59%  [TRG] F2.2
+       SDE_b=0.3853  GCI=0.2442  A_emp=0.9352  kappa=0.8358  phi=0.813629
+       e_val=0.081323  e_tr=0.136207  ratio_c=0.597057  ratio_ref=1.160453
+       MAE_val=0.071352  MSE_val=0.008591  Ambition=1.0800  Gap=0.2800
+       Psi=0.16639216  Regime=SOV  psi_G=0.597057
+
+  #2  L2_TACTICAL_GM_Scout_2  Run 1  U_k=0.070586  Delta=+5070.71%  [TRG] F2.2
+       SDE_b=0.3464  GCI=0.2496  A_emp=0.9528  kappa=0.8570  phi=0.866201
+       e_val=0.090395  e_tr=0.134866  ratio_c=0.670260  ratio_ref=1.160453
+       MAE_val=0.076937  MSE_val=0.011280  Ambition=1.0800  Gap=0.2800
+       Psi=0.11133955  Regime=SOV  psi_G=0.670260
+
+  #3  L2_TACTICAL_GM_Scout_4  Run 1  U_k=0.070448  Delta=+5060.61%  [TRG] F2.2
+       SDE_b=0.4284  GCI=0.2199  A_emp=0.9159  kappa=0.8163  phi=0.760956
+       e_val=0.082376  e_tr=0.153810  ratio_c=0.535572  ratio_ref=1.160453
+       MAE_val=0.071733  MSE_val=0.008949  Ambition=1.1500  Gap=0.3000
+       Psi=0.22440246  Regime=SOV  psi_G=0.535572
+
+  #4  L2_Scout_2  Run 1  U_k=0.070233  Delta=+5044.85%  [TRG] F2.2
+       SDE_b=0.3274  GCI=0.2547  A_emp=0.9642  kappa=0.8734  phi=0.882094
+       e_val=0.090004  e_tr=0.129346  ratio_c=0.695839  ratio_ref=1.160453
+       MAE_val=0.079051  MSE_val=0.010501  Ambition=1.2000  Gap=0.1800
+       Psi=0.09850820  Regime=SOV  psi_G=0.695839
+
+  #5  L2_Scout_2  Run 2  U_k=0.066023  Delta=+4736.50%  [TRG] F2.2
+       SDE_b=0.3499  GCI=0.2425  A_emp=0.9333  kappa=0.8338  phi=0.819989
+       e_val=0.084665  e_tr=0.139902  ratio_c=0.605172  ratio_ref=1.160453
+       MAE_val=0.074607  MSE_val=0.009231  Ambition=1.2000  Gap=0.1800
+       Psi=0.15904363  Regime=SOV  psi_G=0.605172
+
+  #6  L2_TACTICAL_GM_Scout_4  Run 2  U_k=0.065938  Delta=+4730.21%  [TRG] F2.2
+       SDE_b=0.4374  GCI=0.2204  A_emp=0.8742  kappa=0.7823  phi=0.755549
+       e_val=0.080348  e_tr=0.151672  ratio_c=0.529747  ratio_ref=1.160453
+       MAE_val=0.071370  MSE_val=0.008182  Ambition=1.1500  Gap=0.3000
+       Psi=0.23153904  Regime=SOV  psi_G=0.529747
+
+  #7  L2_Scout_4  Run 2  U_k=0.064914  Delta=+4655.25%  [TRG] F2.2
+       SDE_b=0.3274  GCI=0.2440  A_emp=0.9509  kappa=0.8545  phi=0.858856
+       e_val=0.093662  e_tr=0.142111  ratio_c=0.659074  ratio_ref=1.160453
+       MAE_val=0.085082  MSE_val=0.010631  Ambition=1.2000  Gap=0.2000
+       Psi=0.12059979  Regime=SOV  psi_G=0.659074
+
+  #8  L2_Scout_4  Run 1  U_k=0.055801  Delta=+3987.69%  [TRG] F2.2
+       SDE_b=0.2987  GCI=0.2350  A_emp=0.9422  kappa=0.8438  phi=0.854849
+       e_val=0.101353  e_tr=0.155183  ratio_c=0.653122  ratio_ref=1.160453
+       MAE_val=0.092231  MSE_val=0.012405  Ambition=1.2000  Gap=0.2000
+       Psi=0.12444335  Regime=SOV  psi_G=0.653122
+
+  #9  L2_Scout_3  Run 1  U_k=0.051239  Delta=+3653.46%  [TRG] F2.2
+       SDE_b=0.2779  GCI=0.2366  A_emp=0.9338  kappa=0.8343  phi=0.772451
+       e_val=0.077079  e_tr=0.140597  ratio_c=0.548228  ratio_ref=1.160453
+       MAE_val=0.068759  MSE_val=0.007466  Ambition=1.2000  Gap=0.1800
+       Psi=0.21203806  Regime=SOV  psi_G=0.548228
+
+  #10  L1_GM_Scout_3  Run 1  U_k=0.046092  Delta=+3276.41%  [TRG] F2.2
+       SDE_b=0.2051  GCI=0.2554  A_emp=0.9786  kappa=0.8995  phi=0.856787
+       e_val=0.091615  e_tr=0.139660  ratio_c=0.655987  ratio_ref=1.160453
+       MAE_val=0.081381  MSE_val=0.010637  Ambition=1.0000  Gap=0.3000
+       Psi=0.12207577  Regime=SOV  psi_G=0.655987
+
+  #11  L1_GM_Scout_2  Run 1  U_k=0.042890  Delta=+3041.90%  [TRG] F2.2
+       SDE_b=0.1910  GCI=0.2532  A_emp=0.9807  kappa=0.9042  phi=0.845635
+       e_val=0.090539  e_tr=0.141508  ratio_c=0.639813  ratio_ref=1.160453
+       MAE_val=0.080315  MSE_val=0.010417  Ambition=1.0000  Gap=0.0000
+       Psi=0.13293358  Regime=SOV  psi_G=0.639813
+
+  #12  L2_Scout_3  Run 2  U_k=0.042598  Delta=+3020.51%  [TRG] F2.2
+       SDE_b=0.2357  GCI=0.2295  A_emp=0.9383  kappa=0.8393  phi=0.789252
+       e_val=0.088374  e_tr=0.155742  ratio_c=0.567441  ratio_ref=1.160453
+       MAE_val=0.077536  MSE_val=0.010146  Ambition=1.2000  Gap=0.1800
+       Psi=0.19187410  Regime=SOV  psi_G=0.567441
+
+  #13  L1_GM_Scout_3  Run 2  U_k=0.033574  Delta=+2359.43%  [TRG] F2.2
+       SDE_b=0.1518  GCI=0.2500  A_emp=0.9801  kappa=0.9028  phi=0.908950
+       e_val=0.110610  e_tr=0.148583  ratio_c=0.744435  ratio_ref=1.160453
+       MAE_val=0.097392  MSE_val=0.015781  Ambition=1.0000  Gap=0.3000
+       Psi=0.07181890  Regime=SOV  psi_G=0.744435
+
+  #14  L1_GM_Scout_4  Run 1  U_k=0.032742  Delta=+2298.52%  [TRG] F2.2
+       SDE_b=0.1462  GCI=0.2542  A_emp=0.9787  kappa=0.8999  phi=0.852813
+       e_val=0.091546  e_tr=0.140811  ratio_c=0.650138  ratio_ref=1.160453
+       MAE_val=0.081263  MSE_val=0.010636  Ambition=1.0000  Gap=0.3000
+       Psi=0.12572385  Regime=SOV  psi_G=0.650138
+
+  #15  L1_GM_Scout_4  Run 2  U_k=0.026805  Delta=+1863.56%  [TRG] F2.2
+       SDE_b=0.1076  GCI=0.2692  A_emp=0.9912  kappa=0.9333  phi=0.967311
+       e_val=0.107669  e_tr=0.120242  ratio_c=0.895440  ratio_ref=1.160453
+       MAE_val=0.095401  MSE_val=0.014766  Ambition=1.0000  Gap=0.3000
+       Psi=0.02533801  Regime=SOV  psi_G=0.895440
+
+  #16  L1_GM_Scout_2  Run 2  U_k=0.012036  Delta=+781.70%  [TRG] F2.2
+       SDE_b=0.0596  GCI=0.2295  A_emp=0.9788  kappa=0.8999  phi=0.982595
+       e_val=0.154282  e_tr=0.160439  ratio_c=0.961624  ratio_ref=1.160453
+       MAE_val=0.145132  MSE_val=0.026899  Ambition=1.0000  Gap=0.0000
+       Psi=0.01329456  Regime=SOV  psi_G=0.961624
+
+  #17  L2_GM_Scout_1  Run 1  U_k=0.003693  Delta=+170.56%  [TRG] F2.2
+       SDE_b=0.0181  GCI=0.2505  A_emp=0.9520  kappa=0.8559  phi=0.898197
+       e_val=0.093434  e_tr=0.129046  ratio_c=0.724034  ratio_ref=1.160453
+       MAE_val=0.078343  MSE_val=0.012417  Ambition=1.1200  Gap=0.2800
+       Psi=0.08168444  Regime=SOV  psi_G=0.724034
+
+  #18  L1_Scout_3  Run 1  U_k=0.003195  Delta=+134.08%  [TRG] F2.2
+       SDE_b=0.0112  GCI=0.2861  A_emp=1.0000  kappa=1.0000  phi=0.930326
+       e_val=0.096228  e_tr=0.121822  ratio_c=0.789912  ratio_ref=1.160453
+       MAE_val=0.086998  MSE_val=0.011329  Ambition=1.0000  Gap=0.1600
+       Psi=0.05580323  Regime=SOV  psi_G=0.789912
+
+--------------------------------------------------------------------------------------------------------------
+EXECUTIVE SUMMARY
+--------------------------------------------------------------------------------------------------------------
+  Scouts Evaluated          : 14
+  DGDTL candidates passing  : 18 (from 10 distinct scouts)
+  Baseline dominant scouts  : 4
+  Champion Deployed         : L2_TACTICAL_GM_Scout_2  [DGDTL-LTS]
+  Fallback Case             : N/A — DGDTL-LTS champion certified by protocol
+
+  FORMAL CORRECTIONS APPLIED:
+    P1-final  G(C)=[ratio_c<=ratio_ref+eps_F]
+    P2        I(C)=[e_tr(C)>e_val(C)]  e=sqrt(MAE*sqrt(MSE))
+    P3        eps_F=0.0001  [Delta_phi_min=1e-12, margin=1e8x]
+    P4        thr_adp=max(eps_F,0.005*phi_A)  [adaptive phi threshold]
+    P5/P6     eps_tie=2%  [Delta_tie=0.35%(Max Tie), Delta_min=6.1%(Min Win)]
+    P7/TSA    F2.2-RT sub-verdict: DGDTL>BL_TR but BL_RT scope advisory.
+    P8/DOA    Phase-4 audit: DAC/DAE/DPO/ROS certification vs BL_RT.
+    F1-VB     Parallel Branch for Validation Bias Divergence via Psi metric.
+    Phase 3a  Post-Hoc Dual Tie-Break upgraded to U_comp structural metric.
+    P3b/EVT   Intra-scout tie-break via E_inc & EVT Guardrail (Hyperbolic Factor).
+
+  EPISTEMOLOGICAL NOTES:
+    TRG(F2.2): DGDTL constraints displaced solution outside training minimum.
+    STD(F2.3): pure Pareto dominance — lower error AND better integrity.
+    DAC(FA.1): if test degrades -> cause is OOD shift, not selection error.
+    DAE(FA.2): J_RT=False expected in symmetric domains (ratio_ref~1).
+    ratio_ref > 1 — natural val/train asymmetry (domain property)
+==============================================================================================================

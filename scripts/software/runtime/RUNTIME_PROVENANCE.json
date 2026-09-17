@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "record_id": "DGDTL-LAYER3-GATE3-RUNTIME-PROMOTION-v1",
+  "promoted_at_utc": "2026-09-09T17:30:42.545567+00:00",
+  "status": "PROMOTED / IDENTITY FROZEN",
+  "promotion_mode": "EXACT BYTE",
+  "authorization": {
+    "decision": "APPROVED",
+    "scope": "Researcher explicitly authorized Gate 3 only: promote dgdtl-crt-exp-pv1-linux-amd64-c001 to scripts/PyPI/runtime/ and update required release-integrity metadata.",
+    "approved_validation_scope": [
+      "Linux x86-64 Docker",
+      "Windows x86-64 Docker Desktop/WSL2 Linux containers"
+    ],
+    "approved_exclusions": {
+      "macOS": "UNVALIDATED / DEFERRED",
+      "Apple Silicon / linux-arm64": "NOT VALIDATED",
+      "native Windows numerical runtime": "NOT CERTIFIED"
+    }
+  },
+  "path_base": "DGDTL_LTS repository root; artifact_filename is relative to this record",
+  "candidate_id": "dgdtl-crt-exp-pv1-linux-amd64-c001",
+  "artifact_filename": "dgdtl-crt-exp-pv1-linux-amd64-c001.oci.tar",
+  "source_oci": {
+    "path": "scripts/PyPI_cp/runtime_validation/candidates/dgdtl-crt-exp-pv1-linux-amd64-c001/artifacts/dgdtl-crt-exp-pv1-linux-amd64-c001.oci.tar",
+    "sha256": "5f2779def4bb23fe2102945d97d34d67d949dbcd075f0483cdde415a1e949b05",
+    "bytes": 701538304
+  },
+  "destination_oci": {
+    "path": "scripts/PyPI/runtime/dgdtl-crt-exp-pv1-linux-amd64-c001.oci.tar",
+    "sha256": "5f2779def4bb23fe2102945d97d34d67d949dbcd075f0483cdde415a1e949b05",
+    "bytes": 701538304
+  },
+  "platform": "linux/amd64",
+  "oci_manifest_digest": "sha256:d1f78a55ef681ddb79ebe9fcdfb2697e19beb8ce6fa75c9d31cbc19830198f87",
+  "oci_config_digest": "sha256:912a19b08eb9d0cb5249faf63147db902a286f1c5644a1f5bed45060cd636faf",
+  "oci_layers": [
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:a3629ac5b9f4680dc2032439ff2354e73b06aecc2e68f0035a2d7c001c8b4114",
+      "size": 29726011
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:71d8499757dbe1fffd3d70dcb962486ff7edd1e032577dca881f3aceb981d9c6",
+      "size": 120591621
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:d08f7122ce1f4b5e6d23adc6bd240a80d2a5fcf0f91f3dced50d1f2fb050629d",
+      "size": 551073739
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:d67777a2b53b11abc514de7b929b1eb3268e365d5f6ea8e4f7f8e0a356819dc9",
+      "size": 2523
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:0b8df43144b5d7930d056b4caca176271d68583f0a2073a578500ffdc25332e4",
+      "size": 255
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:706597da533247f39f8258f1725deaa9114382db019e1cd34f89f26ba7b152c1",
+      "size": 3227
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:1e625fd780046741c7b4b514a6e43af3b9771c7ddb03734dcb4bdbd5f1afc03c",
+      "size": 266
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:0f0d81a190b0cb9c346f3141719626f60576889c8ea1cc3b360a516d02bbf3ae",
+      "size": 709
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:a707b9ea1d21db943f7c55d674959ca01397cfff1ae6d989b7215facaf832254",
+      "size": 264
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:00aa14dfbd2320b6cd5f5ff2dede3ff208bb19dc6eb20122a6f288557352c37e",
+      "size": 10137
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:bcdaea0082bfa12b7764c68bcef339396b179921d9c7ae15124e9e0d0602acdf",
+      "size": 2298
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:0d51dc523a435048e5d121604ea9465300b584021d1d5dd65ffbd2c9abdb2d4e",
+      "size": 269
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:6d3cb8709ca482735e2f4429341e4c9cecb6235ec0dc55096ac7882a5a10ad2a",
+      "size": 10409
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:7c8ca4d56e8b3cf1a3269ec0e9d17259d60670926ae25b7ad159a2c9f142e6a9",
+      "size": 29111
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:1592e8a26a96f3f56b9c2b5677f01ffff9fcafb1c59398d79b50d552160babf0",
+      "size": 2134
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:eb17da55793166522b71385046b5a6d61cbc7bdf383d0e74f55cd390b9751baa",
+      "size": 10097
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:171e6eeed23ede68cae89e18b7a6fce8580caff40d8dfbd28b47d44b19c19bbf",
+      "size": 27877
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:378453f49930ae8fa18a4bd504bf0eab9f7e3d8dcbbff9753665c6b4b1bd11fa",
+      "size": 3941
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:34bad476927d80291d76dd944e35d908425364f6c243e4f869370e7749ce7883",
+      "size": 7529
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+      "size": 32
+    }
+  ],
+  "verification": {
+    "source_oci": "PASS",
+    "destination_oci": "PASS",
+    "source_destination_cmp": "PASS",
+    "source_oci_manifest_config_and_all_20_layers": "PASS",
+    "destination_internal_identity": "Identical to verified source by SHA-256, size and cmp",
+    "gate2_pre_promotion_64_file_baseline": "PASS",
+    "official_wheels": "PASS_UNCHANGED",
+    "golden_masters": "PASS_UNCHANGED",
+    "preexisting_product_files_before_manifest_update": "64/64 PASS_UNCHANGED"
+  },
+  "certification": {
+    "source_record": {
+      "path": "scripts/PyPI_cp/runtime_validation/certification-record/cross-os-v1/FINAL_CERTIFICATION.json",
+      "sha256": "49e5b72495be46a90d10493e4a320f96c6bac1507a575d2559a78abd3fd05c52",
+      "bytes": 5343
+    },
+    "certification_id": "DGDTL-CRT-CROSS-OS-v1",
+    "cross_os_validation": "COMPLETE / PASS",
+    "validated_platforms": [
+      "Linux x86-64 Docker",
+      "Windows x86-64 Docker Desktop/WSL2 Linux containers"
+    ],
+    "unvalidated_platforms": {
+      "macOS": "UNVALIDATED / DEFERRED",
+      "Apple Silicon / linux-arm64": "NOT VALIDATED",
+      "native Windows numerical runtime": "NOT CERTIFIED"
+    },
+    "scientific_cases": [
+      {
+        "domain": "S03",
+        "Hunter": "PASS",
+        "Unified": "PASS",
+        "Workflow": "PASS"
+      },
+      {
+        "domain": "D01",
+        "Hunter": "PASS",
+        "Unified": "PASS",
+        "Workflow": "PASS"
+      },
+      {
+        "domain": "D02",
+        "Hunter": "PASS",
+        "Unified": "PASS",
+        "Workflow": "PASS"
+      },
+      {
+        "domain": "D08",
+        "Hunter": "PASS",
+        "Unified": "PASS",
+        "Workflow": "PASS"
+      },
+      {
+        "domain": "D11",
+        "Hunter": "PASS",
+        "Unified": "PASS",
+        "Workflow": "PASS"
+      }
+    ],
+    "limitations": [
+      "No universal cross-platform claim",
+      "No untested-domain claim",
+      "No arbitrary future orchestrator reproducibility claim"
+    ],
+    "evidence_index": {
+      "path": "scripts/PyPI_cp/runtime_validation/certification-record/cross-os-v1/VALIDATION_EVIDENCE_INDEX.json",
+      "sha256": "e21f92657b1463abdb157a2b348cb345d80c5eae6a19eb91a1c05c5b78de6063",
+      "bytes": 5087
+    },
+    "runtime_fingerprints": {
+      "linux": {
+        "source_record": {
+          "path": "scripts/PyPI_cp/runtime_validation/validation-kits/dgdtl-crt-exp-pv1-linux-amd64-c001/cross-os-v7/results/linux/20260904T185419Z-183574/runtime-fingerprint.json",
+          "sha256": "fcd62c51db0869d0afe942fb4a5b82d67f98cc9aa64bdcd8daf58172c7a8ced3",
+          "bytes": 33064
+        },
+        "integrity": "PASS",
+        "candidate_id": "dgdtl-crt-exp-pv1-linux-amd64-c001",
+        "platform": "linux/amd64"
+      },
+      "windows": {
+        "source_record": {
+          "path": "scripts/PyPI_cp/runtime_validation/validation-kits/dgdtl-crt-exp-pv1-linux-amd64-c001/cross-os-v7/windows_universal_transport/DGDTL_Cross_OS_Validation_v7_win/results/windows/20260907T220121Z-5936/runtime-fingerprint.json",
+          "sha256": "4a79f9c90cd81187440cd015b511568810545b4875e5f952d66b3ab3b9f6218e",
+          "bytes": 32477
+        },
+        "integrity": "PASS",
+        "candidate_id": "dgdtl-crt-exp-pv1-linux-amd64-c001",
+        "platform": "linux/amd64"
+      }
+    }
+  },
+  "build_provenance": {
+    "source_record": {
+      "path": "scripts/PyPI_cp/runtime_validation/certification-record/cross-os-v1/BUILD_AND_RUNTIME_IDENTITY.json",
+      "sha256": "e6fb6c3b211dc2d7539e12c70e40312bf4afa28cacb35d68ed27ae9dc5a22b5c",
+      "bytes": 10923
+    },
+    "candidate_input_manifest": {
+      "path": "scripts/PyPI_cp/runtime_validation/candidates/dgdtl-crt-exp-pv1-linux-amd64-c001/candidate-input-manifest.json",
+      "sha256": "9e44f78eb26587d80647418af0b0059f70a9e6d9cc1f9ef8da4db5113839d571",
+      "bytes": 5248
+    },
+    "environment_binary_lock": {
+      "path": "scripts/PyPI_cp/runtime_validation/candidates/dgdtl-crt-exp-pv1-linux-amd64-c001/locks/environment-linux-64.explicit.txt",
+      "sha256": "43c8bb5b3c5c214bac57d2f8ecdcfa1a3d4c0427680d9ac7a23f3816a7b157e3",
+      "bytes": 28327
+    },
+    "build_count": 1,
+    "build_attempt": "attempt-001",
+    "build_result": "PASS",
+    "rebuild": false,
+    "image_regeneration": false,
+    "dependency_solve": false,
+    "oci_conversion": false,
+    "scientific_execution": false,
+    "docker_commands_executed": false
+  },
+  "official_wheels_sha256": {
+    "scripts/PyPI/dist/dgdtl_lts-1.0.0-py3-none-any.whl": "debe10053115fd3a6014f75502086ef8ac5a37dc1e20bf26546614585e6d404d",
+    "scripts/PyPI/dist/u_maxp-1.0.0-py3-none-any.whl": "781debee6ac96d0ac42677d64afa9a6287eb9d9033f7b3a83bf7bcbbe964a0ea"
+  },
+  "golden_masters_sha256": {
+    "scripts/source/dgdtl_core.py": "25e0663160e0379e5f2fbac6ae86091bc51c8c07552aa27d3050148b0b2621b6",
+    "scripts/source/u_maxp_core.py": "88559753226df385afedf978e85d785f9c0a1dcb2840c0967174cc6112d4ce53"
+  },
+  "gate2_baseline": {
+    "path": "scripts/DGDTL_Layer3_Pre_Integration_Baseline.json",
+    "sha256": "953675314178a13789cba88a9cce184916dde16be4f3a3b428c07d9b18492ad3",
+    "bytes": 4447
+  },
+  "pypi_delta": {
+    "added_files": [
+      "scripts/PyPI/runtime/dgdtl-crt-exp-pv1-linux-amd64-c001.oci.tar",
+      "scripts/PyPI/runtime/RUNTIME_PROVENANCE.json"
+    ],
+    "modified_files": [
+      "scripts/PyPI/manifests/RELEASE_CONTENTS.sha256"
+    ],
+    "deleted_files": [],
+    "unchanged_baseline_files": 63,
+    "release_manifest_change": "Preserve all 62 existing entries and add exactly the OCI and this provenance record; 64 covered files out of 66 total. Existing exclusions .Rhistory and manifests/RELEASE_CONTENTS.sha256 are unchanged.",
+    "release_manifest_before": {
+      "path": "scripts/PyPI/manifests/RELEASE_CONTENTS.sha256",
+      "sha256": "c830b48aa38fd4880a1c264554a8425de668bf371b9283a05432726919c7c1dd",
+      "bytes": 5881
+    },
+    "provenance_hash_coverage": "The updated release manifest binds this record; no circular self-hash is embedded."
+  },
+  "historical_record_semantics": "Source preparation/build/certification labels and their historical release-manifest identities remain immutable. The later cross-OS certificate supplies validation status; this separately authorized record supplies promotion status. Existing product documentation and earlier engine certificate are unchanged; final integration and release acceptance remain later gates.",
+  "gate_scope": "Gate 3 only. No Gates 4–11 implementation or Layer 2/1 transfer."
+}

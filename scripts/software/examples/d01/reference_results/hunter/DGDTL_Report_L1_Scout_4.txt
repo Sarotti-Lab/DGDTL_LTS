@@ -1,0 +1,106 @@
+
+================================================================================
+DGDTL HUNTER v1.0.0 - MAP UNIFIED METRICS REPORT (EPISTEMOLOGICALLY SHIELDED)
+================================================================================
+Date: 2026-08-24 14:15:22
+Execution Time: 00:08:45
+Mode: RAW | Error Scale: STANDARDIZED (zero mean, unit variance)
+Loop Status: STRICT
+
+[0] BASELINE REFERENCES & EPISTEMOLOGICAL SEPARATION
+--------------------------------------------------------------------------------
+   [RESULTS]
+   MSE (Train Mode):     0.026427
+   MSE (Retrain Mode):   0.022495
+   MAE (Train Mode):     0.125260  [MEAN]
+   MAE (Retrain Mode):   0.112424  [MEAN]
+
+   [CALCULATED REFERENCES (NATURAL SCALE)]
+   1. Max Error (Train):         0.320168
+   2. Max Error (Retrain):       0.323145
+   3. Truth Anchor (P97.5):      0.305868
+   >> UNIVERSAL GM CEILING:        0.314388
+   >> DATASET MIN THICKNESS:       0.210594
+   >> Active Anchor for Run:       0.305868
+
+   [Epistemological Separation]
+   Baseline U_MAXP Train   -> RAW (Hard-Mode Rival): 0.0683  |  MAP (EVT Collapse): 0.0679  (A_emp=0.9954)
+   Baseline U_MAXP Retrain -> RAW (Hard-Mode Rival): 0.0273  |  MAP (EVT Collapse): 0.0272  (A_emp=0.9933)
+   NOTE: All deltas use RAW baseline as denominator. Candidate U_MAXP uses penalized MAP score.
+
+[1] UNIFIED ROBUSTNESS (U_MAXP = SDE_b* x GCI x A_emp)
+--------------------------------------------------------------------------------
+                            RUN 1           RUN 2
+   > Verdict (vs RAW):      IMPROVEMENT     IMPROVEMENT
+   > U_MAXP (Penalized MAP): 0.0870          0.0840
+
+   [Hard-Mode Deltas: Candidate MAP vs Baseline RAW]
+   > Rel. Perf vs Max RAW:  +27.48%         +23.06%
+   > Rel. Perf vs Train RAW:+27.48%         +23.06%
+   > Rel. Perf vs Ret. RAW: +218.19%        +207.15%
+
+   [Empirical Authenticity (A_emp)]
+   > A_emp Penalty:         1.0000          1.0000
+   > Phi_emp (Excess):      0.0000          0.0000
+   > e_max_robusto (CVaR):  0.299751        0.299751
+
+   [Topological Stability]
+   > SDE_b* (Optuna FG):    0.5157          0.6061
+   > GCI Score:             0.1688          0.1386
+   > MSE Validation:        0.002300        0.000964
+   > GM Valve Triggered:    False
+
+[2] MAXIMUM ERROR ANALYSIS (EVT CONTEXT)
+--------------------------------------------------------------------------------
+   > Target P97.5 Error (Anchor * Ambition): 0.299751
+   
+   The model achieved an Absolute MAXIMUM Error (Train+Valid) of:
+   > MAX Error Achieved:    0.299751        0.299751
+   > CVaR (Robust Tail):    0.299751        0.299751
+   
+                            RUN 1           RUN 2
+   A. vs. BASELINE MAX ERRORS (Worst-case vs Worst-case)
+      1. vs. Max Train Error:  0.9362          0.9362
+      2. vs. Max Retrain Error:0.9276          0.9276
+      
+   B. vs. ALGORITHM ANCHOR (Max Error vs Statistical Target)
+      3. vs. Anchor (P97.5):   0.9800          0.9800
+
+[3] ENGINEERING THRESHOLDS
+--------------------------------------------------------------------------------
+   > Ambition (vs. Anchor):   0.9800
+   > Gap Factor (%):          0.1200
+   > Gap Absolute (Y-units):  0.035970
+   > Threshold (Train):       0.299751
+   > Threshold (Valid):       0.335721
+
+[4] HYPERPARAMETERS (For dgdtl_unified_umaxp.py)
+--------------------------------------------------------------------------------
+   > Diversity Weight:        24.842181
+   > Tolerance Factor:        1.267034
+   > Constraint Threshold:    0.299751
+   > Validation Threshold:    0.335721
+   > Coeff Bounds:            -0.880000 to 0.890000
+   > Intercept Bounds:        -1.500000 to 1.600000
+   
+[5] COEFFICIENTS (Verify with hyperparameters from section 4)
+--------------------------------------------------------------------------------
+                            RUN 1           RUN 2
+   > Intercept:             0.030970        -0.011800
+   > NBO_C1              : 0.664462        0.732635
+   > sEpi                : -0.593988       -0.565577
+   > NBO_C1_x_sEpi       : -0.482728       -0.514436
+
+[6] DEPLOYMENT GUIDE
+--------------------------------------------------------------------------------
+   1. Open dgdtl_unified_umaxp.py
+   2. Configure:
+      - Mode:             raw
+      - Fit Intercept:  YES
+      - Beta Sum=1:     NO
+      - Normalize X:    YES
+      - Target Y:       NORMALIZED
+   3. Features:         ['NBO_C1*sEpi']
+   4. Copy hyperparameters from Section [4]
+   5. Verify Y_std = 0.475505
+================================================================================

@@ -1,0 +1,68 @@
+--- Summary of Model Evaluation ---
+Timestamp: 2026-08-25 11:53:26
+Predictors Normalized (X): True
+Target Normalized (Y): False
+Duration (Training Phase): 1.03 minutes
+Model: DGDTL_Champion_Conceptual_Run1 (TOLERANCE_FACTOR=1.720009, VALIDATION_THRESHOLD=3.345922, beta_sum_one=True, coeff_bounds=(-1.660000, 1.270000), constraint_threshold=2.935019, damping_factor=200.000000, diversity_weight=36.704258, filter_limits=None, fit_intercept=True, intercept_bounds=(-140.400000, -120.300000), mode=raw, n_jobs=11, num_solutions_run1=1000, num_solutions_run2=1000, random_state=42, shapiro_threshold=0.050000, verbose=True)
+============================================================
+
+Coefficients:
+Predictor  Coefficient_Normalized
+Intercept             -130.683181
+ N1_NBO-q                0.355348
+ C2_NBO-q                0.968213
+ C3_NBO-q               -0.981118
+ C5_NBO-q                1.270000
+    C3_f-               -0.765684
+ C3sub_f-                0.543242
+   C4H_f-               -1.660000
+C4H_NBO-q                1.270000
+
+
+--- Performance Metrics (Original scale) ---
+
+Mean Absolute Error (MAE)
+-------------------------
+Training      1.1592
+Validation    0.9899
+Train+Valid   1.1336
+Testing       0.7697
+Valid+Testing  0.8975
+
+
+Mean Squared Error (MSE)
+-------------------------
+Training      2.0017
+Validation    1.5724
+Train+Valid   1.9367
+Testing       1.2487
+Valid+Testing  1.4367
+
+
+R-squared (R²)
+---------------
+Training      0.9098
+Validation    0.9329
+Train+Valid   0.9140
+Testing       0.9377
+Valid+Testing  0.9352
+
+Maximum Absolute Error (MaxErr)
+-------------------------------
+Training      2.9350
+Validation    2.5637
+Testing       2.9050
+Global        2.9350
+======================================================================
+  PEL DIAGNOSTIC (Pareto-Efficiency-Like)
+======================================================================
+  Shapiro-Wilk p-value (Train) : 0.177639  (Alpha Threshold: 0.05)
+  Weighting Factor (w)         : 1.0000
+
+  Metrics Ordered by Magnitude (Unified Scale):
+    1. MAE (L1)  : 0.989867  <- Lower Bound (Robust Floor)
+    2. PEL       : 1.253967  <- PEL ≈ RMSE (Strong L2 Dominance)
+    3. RMSE (L2) : 1.253967  <- Upper Bound (Gaussian Ceiling)
+
+  Diagnostic   : Gaussian Regime. Absolute priority assigned to global precision.
+======================================================================
